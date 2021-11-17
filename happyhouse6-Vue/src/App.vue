@@ -2,16 +2,23 @@
   <div id="app">
     <navi-bar />
     <router-view />
+    <alert-window />
   </div>
 </template>
 
 <script>
 import NaviBar from "./components/layout/NaviBar.vue";
+import AlertWindow from "@/components/etc/alert.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
   components: {
     NaviBar,
+    AlertWindow,
+  },
+  computed: {
+    ...mapState(["showSuccess"]),
   },
 };
 </script>

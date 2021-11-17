@@ -11,6 +11,7 @@ export default new Vuex.Store({
     guguns: [{ value: null, text: "선택하세요" }],
     houses: [],
     house: null,
+    showSuccess: false,
   },
   mutations: {
     SET_SIDO_LIST(state, sidos) {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
+    },
+    SET_SUCCESS_VIEW(state) {
+      state.showSuccess = !state.showSuccess;
     },
   },
   actions: {
@@ -91,6 +95,9 @@ export default new Vuex.Store({
     detailHouse({ commit }, house) {
       // 나중에 house 일련번호를 이용해 API 호출
       commit("SET_DETAIL_HOUSE", house);
+    },
+    showSuccessAlert({ commit }) {
+      commit("SET_SUCCESS_VIEW");
     },
   },
   plugins: [createPersistedState()],

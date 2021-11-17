@@ -28,18 +28,28 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
-              ><b-icon icon="instagram" font-scale="1"></b-icon>
-              인별그램</router-link
-            ></b-nav-item
-          >
-          <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
               ><b-icon icon="house-fill" font-scale="1"></b-icon>
               아파트정보</router-link
             ></b-nav-item
           >
         </b-navbar-nav>
+
+        <b-navbar type="dark" variant="dark" class="ml-auto">
+          <b-nav-form>
+            <b-form-input
+              class="mr-sm-2"
+              placeholder="Search"
+              @click="showSuccessAlert"
+            ></b-form-input>
+            <b-button
+              variant="outline-success"
+              class="my-2 my-sm-0"
+              @click="showSuccessAlert"
+              >Search</b-button
+            >
+          </b-nav-form>
+        </b-navbar>
 
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
@@ -64,8 +74,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "NaviBar",
+  methods: {
+    ...mapActions(["showSuccessAlert"]),
+  },
 };
 </script>
 
