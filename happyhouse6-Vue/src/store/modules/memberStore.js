@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login } from "@/api/member.js";
+import { login, modifyMember } from "@/api/member.js";
 import { findById } from "../../api/member";
 
 const memberStore = {
@@ -8,6 +8,9 @@ const memberStore = {
     isLogin: false,
     isLoginError: false,
     userInfo: null,
+    isLogout: false,
+    isRegister: false,
+    isRegisterError: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -25,6 +28,16 @@ const memberStore = {
       state.isLogin = true;
       state.userInfo = userInfo;
     },
+    SET_LOGOUT: (state, isLogout) => {
+      state.isLogout = isLogout;
+      state.isLogin = false;
+    },
+    SET_REGISTER: (state, isRegister) => {
+      state.isRegister = isRegister;
+    },
+    SET_REGISTER_ERROR: (state, isRegisterError) => {
+      state.isRegisterError = isRegisterError;
+    },
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -39,6 +52,21 @@ const memberStore = {
           } else {
             commit("SET_IS_LOGIN", false);
             commit("SET_IS_LOGIN_ERROR", true);
+          }
+        },
+        () => {}
+      );
+    },
+    async userRegister({ commit }, user) {
+      await modifyMember(
+        user,
+        (response) => {
+          if (response.data.message === "success") {
+            commit("SET_REGISTER", true);
+            commit("SET_REGISTER_ERROR", false);
+          } else {
+            commit("SET_REGISTER", false);
+            commit("SET_REGISTER_ERROR", true);
           }
         },
         () => {}

@@ -3,7 +3,7 @@
     <b-alert
       dismissible
       variant="success"
-      :show="showSuccess"
+      :show="isLogin"
       class="content-cols-sm"
       style="width: 200px; float: right"
       @dismissed="dismissCountDown = 0"
@@ -11,14 +11,38 @@
       id="successAlert"
       >로그인 성공</b-alert
     >
+
     <b-alert
+      dismissible
+      variant="danger"
+      :show="isLogout"
+      class="content-cols-sm"
+      style="width: 200px; float: right"
+      @dismissed="dismissCountDown = 0"
+      @dismiss-count-down="countDownChanged"
+      id="successAlert"
+      >로그아웃 성공</b-alert
+    >
+
+    <b-alert
+      dismissible
+      variant="success"
+      :show="isRegister"
+      class="content-cols-sm"
+      style="width: 200px; float: right"
+      @dismissed="dismissCountDown = 0"
+      @dismiss-count-down="countDownChanged"
+      id="successAlert"
+      >등록 성공</b-alert
+    >
+    <!-- <b-alert
       v-model="showDismissibleAlert"
       variant="danger"
       dismissible
       v-show="hidden"
     >
       Dismissible Alert!
-    </b-alert>
+    </b-alert> -->
 
     <!-- <b-alert
       :show="dismissCountDown"
@@ -48,17 +72,18 @@
 <script>
 import { mapState } from "vuex";
 
+const memberStore = "memberStore";
+
 export default {
   data() {
     return {
       dismissSecs: 3,
       dismissCountDown: 0,
-      successCountDown: 3,
       showDismissibleAlert: false,
     };
   },
   computed: {
-    ...mapState(["showSuccess"]),
+    ...mapState(memberStore, ["isLogin", "isLogout", "isRegister"]),
   },
   methods: {
     successCountDownChanged(successCountDown) {
@@ -74,9 +99,4 @@ export default {
 };
 </script>
 
-<style scoped>
-b-alert {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
-</style>
+<style scoped></style>

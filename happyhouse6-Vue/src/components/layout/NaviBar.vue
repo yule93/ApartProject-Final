@@ -41,18 +41,6 @@
           >
         </b-navbar-nav>
 
-        <b-navbar type="dark" variant="dark" class="ml-auto">
-          <b-nav-form>
-            <b-form-input class="mr-sm-2" placeholder="Search"></b-form-input>
-            <b-button
-              variant="outline-success"
-              class="my-2 my-sm-0"
-              @click="showSuccessAlert"
-              >Search</b-button
-            >
-          </b-nav-form>
-        </b-navbar>
-
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center"
             ><b-avatar
@@ -98,18 +86,21 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 const memberStore = "memberStore";
 
 export default {
   name: "NaviBar",
   computed: {
-    ...mapState(memberStore, ["isLogin", "userInfo"]),
+    ...mapState(memberStore, ["isLogin", "userInfo", "isLogout"]),
   },
   methods: {
-    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
-    ...mapActions(alertStore, ["showSuccessAlert"]),
+    ...mapMutations(memberStore, [
+      "SET_IS_LOGIN",
+      "SET_USER_INFO",
+      "SET_IS_LOGOUT",
+    ]),
     onClickLogout() {
       this.SET_IS_LOGIN(false);
       this.SET_USER_INFO(null);

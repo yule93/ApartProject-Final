@@ -6,9 +6,14 @@
       >
     </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
-      ></b-col>
+      <b-col>
+        <div class="map_wrap">
+          <div
+            id="map"
+            style="width: 100%; height: 400px; float: left; margin-top: 10px"
+          ></div>
+        </div>
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -54,6 +59,9 @@ const houseStore = "houseStore";
 
 export default {
   name: "HouseDetail",
+  data() {
+    return {};
+  },
   computed: {
     ...mapState(houseStore, ["house"]),
     // house() {
@@ -64,6 +72,36 @@ export default {
     price(value) {
       if (!value) return value;
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.initMap();
+    } else {
+      const script = document.createElement("script");
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=47642a55e575541b111222ca754737af";
+      document.head.appendChild(script);
+    }
+  },
+  methods: {
+    initMap() {
+      const container = document.querySelector("#map");
+      const options = {
+        center: new kakao.maps.LatLng(35.19656853772262, 129.0807270648317),
+        level: 3,
+      };
+      const map = new kakao.maps.Map(container, options);
+      const markerPosition = new kakao.maps.LatLng(
+        35.19656853772262,
+        129.0807270648317
+      );
+
+      const marker = new kakao.maps.Marker({
+        position: markerPosition,
+      });
+      marker.setMap(map);
     },
   },
 };
