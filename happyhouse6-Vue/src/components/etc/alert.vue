@@ -6,6 +6,8 @@
       :show="showSuccess"
       class="content-cols-sm"
       style="width: 200px; float: right"
+      @dismissed="dismissCountDown = 0"
+      @dismiss-count-down="countDownChanged"
       id="successAlert"
       >로그인 성공</b-alert
     >
