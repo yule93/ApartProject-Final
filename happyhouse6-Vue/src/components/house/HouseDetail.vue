@@ -178,7 +178,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .overlaybox {
   position: relative;
   width: 360px;
@@ -187,9 +187,8 @@ export default {
     no-repeat;
   padding: 15px 10px;
 }
-.overlaybox div,
+div.overlaybox div,
 ul {
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -269,10 +268,10 @@ ul {
   background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png")
     no-repeat;
 }
-.overlaybox li .up {
+.overlaybox >>> li >>> .up {
   background-position: 0 -40px;
 }
-.overlaybox li .down {
+.overlaybox >>> li >>> .down {
   background-position: 0 -60px;
 }
 .overlaybox li .count {
