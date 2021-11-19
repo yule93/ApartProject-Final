@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, modifyMember } from "@/api/member.js";
+import { login, registerMember } from "@/api/member.js";
 import { findById } from "../../api/member";
 
 const memberStore = {
@@ -57,8 +57,8 @@ const memberStore = {
         () => {}
       );
     },
-    async userRegister({ commit }, user) {
-      await modifyMember(
+    userRegister({ commit }, user) {
+      registerMember(
         user,
         (response) => {
           if (response.data.message === "success") {

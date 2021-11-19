@@ -11,7 +11,7 @@ async function findById(userid, success, fail) {
   await api.get(`/user/info/${userid}`).then(success).catch(fail);
 }
 
-async function modifyMember(user, success, fail) {
+async function registerMember(user, success, fail) {
   await api
     .put(`/user/register`, JSON.stringify(user))
     .then(success)
@@ -19,4 +19,4 @@ async function modifyMember(user, success, fail) {
 }
 // function logout(success, fail)
 
-export { login, findById, modifyMember };
+export { login, findById, registerMember };

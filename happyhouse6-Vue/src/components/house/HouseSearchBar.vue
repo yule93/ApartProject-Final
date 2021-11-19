@@ -38,7 +38,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
     키: 값
     memberStore: memberStore,
     houseStore: houseStore
-  }  
+  }
 */
 const houseStore = "houseStore";
 
@@ -64,18 +64,29 @@ export default {
   },
   methods: {
     ...mapActions(houseStore, ["getSido", "getGugun", "getHouseList"]),
-    ...mapMutations(houseStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
+    ...mapMutations(houseStore, [
+      "CLEAR_SIDO_LIST",
+      "CLEAR_GUGUN_LIST",
+      "SET_DETAIL_SIDO",
+      "SET_DETAIL_GUGUN",
+    ]),
     // sidoList() {
     //   this.getSido();
     // },
     gugunList() {
-      // console.log(this.sidoCode);
+      //console.log(this.sidos);
       this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
     searchApt() {
-      if (this.gugunCode) this.getHouseList(this.gugunCode);
+      if (this.gugunCode) {
+        this.getHouseList(this.gugunCode);
+        const selectedSido = this.sidos.find(
+          (element) => element.value == this.sidoCode
+        );
+        this.SET_DETAIL_SIDO(selectedSido.text);
+      }
     },
   },
 };
