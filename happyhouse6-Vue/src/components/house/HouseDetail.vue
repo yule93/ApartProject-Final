@@ -178,7 +178,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .overlaybox {
   position: relative;
   width: 360px;
