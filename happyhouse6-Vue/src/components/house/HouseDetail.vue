@@ -15,38 +15,32 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-2 mt-1 back-white">
       <b-col>
-        <b-alert show variant="secondary"
-          >일련번호 : {{ house.일련번호 }}</b-alert
-        >
+        <div>일련번호 : {{ house.일련번호 }}</div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-2 mt-1 back-white">
       <b-col>
-        <b-alert show variant="primary"
-          >아파트 이름 : {{ house.아파트 }}
-        </b-alert>
+        <div>아파트 이름 : {{ house.아파트 }}</div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-2 mt-1 back-white">
       <b-col>
-        <b-alert show variant="info">법정동 : {{ house.법정동 }} </b-alert>
+        <div>법정동 : {{ house.법정동 }}</div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-2 mt-1 back-white">
       <b-col>
-        <b-alert show variant="warning">층수 : {{ house.층 }}층</b-alert>
+        <div>층수 : {{ house.층 }}층</div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-2 mt-1 back-white">
       <b-col>
-        <b-alert show variant="danger"
-          >거래금액 :
-          {{
-            (parseInt(house.거래금액.replace(",", "")) * 10000) | price
-          }}원</b-alert
-        >
+        <div>
+          거래금액 :
+          {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원
+        </div>
       </b-col>
     </b-row>
   </b-container>
@@ -75,7 +69,7 @@ export default {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
-  mounted() {
+  created() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {
@@ -113,7 +107,7 @@ export default {
           var content = `
 				<div class="overlaybox">
 					<div class="boxtitle">${house.아파트}</div>
-					<div class="first"><img src="./assets/apt.png" style="width:247px; height:136px;" alt=""></div>
+					<div class="first"><img src="@/assets/ssafy_logo.png" style="width:247px; height:136px;" alt=""></div>
 					<ul>
 						<li class="up">
 							<span class="title">건축년도</span>

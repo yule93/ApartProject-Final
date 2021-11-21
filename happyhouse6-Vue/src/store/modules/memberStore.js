@@ -45,6 +45,7 @@ const memberStore = {
         user,
         (response) => {
           if (response.data.message === "success") {
+            console.log("success");
             let token = response.data["access-token"];
             commit("SET_IS_LOGIN", true);
             commit("SET_IS_LOGIN_ERROR", false);

@@ -56,7 +56,7 @@
             >
               <b-form-input
                 v-model="emailInfo.emailId"
-                id="email"
+                id="emailId"
                 required
                 placeholder="이메일 입력..."
               ></b-form-input>
