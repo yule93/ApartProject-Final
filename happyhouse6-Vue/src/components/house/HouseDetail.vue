@@ -1,7 +1,7 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
     <b-row>
-      <b-col
+      <b-col class="back-white"
         ><h3>{{ house.아파트 }}</h3></b-col
       >
     </b-row>
@@ -107,7 +107,7 @@ export default {
           var content = `
 				<div class="overlaybox">
 					<div class="boxtitle">${house.아파트}</div>
-					<div class="first"><img src="@/assets/ssafy_logo.png" style="width:247px; height:136px;" alt=""></div>
+					<div class="first"><img src="https://source.unsplash.com/MP0bgaS_d1c/600x300" style="width:247px; height:136px;" alt=""></div>
 					<ul>
 						<li class="up">
 							<span class="title">건축년도</span>
@@ -119,7 +119,9 @@ export default {
 						</li>
 						<li>
 							<span class="title">최신거래금액</span>
-							<span class="count">${parseInt(house.거래금액.replace(",", "")) * 10000}</span>
+							<span class="count">${(parseInt(house.거래금액.replace(",", "")) * 10000)
+                .toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span>
 						</li>
 						<li>
 							<span class="last" id="recenthistor" data-toggle="modal" data-target="#myModal">아파트정보 update</span>
@@ -173,6 +175,11 @@ export default {
 </script>
 
 <style>
+.back-white {
+  filter: invert(100%);
+  font-weight: bold;
+}
+
 .overlaybox {
   position: relative;
   width: 360px;
