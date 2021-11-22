@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, registerMember } from "@/api/member.js";
+import { login, registerMember, deleteMember } from "@/api/member.js";
 import { findById } from "../../api/member";
 
 const memberStore = {
@@ -11,6 +11,7 @@ const memberStore = {
     isLogout: false,
     isRegister: false,
     isRegisterError: false,
+    isDeleted: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -38,6 +39,9 @@ const memberStore = {
     SET_REGISTER_ERROR: (state, isRegisterError) => {
       state.isRegisterError = isRegisterError;
     },
+    DELETE_USER: (state, isDeleted) => {
+      state.isDeleted = isDeleted;
+    },
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -62,12 +66,28 @@ const memberStore = {
       registerMember(
         user,
         (response) => {
-          if (response.data.message === "success") {
+          if (response.data === "success") {
             commit("SET_REGISTER", true);
             commit("SET_REGISTER_ERROR", false);
           } else {
             commit("SET_REGISTER", false);
             commit("SET_REGISTER_ERROR", true);
+          }
+        },
+        () => {}
+      );
+    },
+    async userDelete({ commit }, userid) {
+      await deleteMember(
+        userid,
+        (response) => {
+          console.log(response);
+          if (response.data === "success") {
+            console.log("delete success");
+            commit("DELETE_USER", true);
+          } else {
+            console.log(response.data);
+            commit("DELETE_USER", false);
           }
         },
         () => {}

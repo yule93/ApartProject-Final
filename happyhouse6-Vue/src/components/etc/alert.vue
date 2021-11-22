@@ -3,7 +3,7 @@
     <b-alert
       dismissible
       variant="success"
-      :show="isLogin"
+      :show="isLogin && userInfo != null"
       class="content-cols-sm"
       style="width: 200px; float: right"
       @dismissed="dismissCountDown = 0"
@@ -15,7 +15,7 @@
     <b-alert
       dismissible
       variant="danger"
-      :show="isLogout"
+      :show="isLogout && userInfo == null"
       class="content-cols-sm"
       style="width: 200px; float: right"
       @dismissed="dismissCountDown = 0"
@@ -27,13 +27,25 @@
     <b-alert
       dismissible
       variant="success"
-      :show="isRegister"
+      :show="isRegister && userInfo == null"
       class="content-cols-sm"
       style="width: 200px; float: right"
       @dismissed="dismissCountDown = 0"
       @dismiss-count-down="countDownChanged"
       id="successAlert"
       >등록 성공</b-alert
+    >
+
+    <b-alert
+      dismissible
+      variant="secondary"
+      :show="isDeleted && userInfo == null"
+      class="content-cols-sm"
+      style="width: 200px; float: right"
+      @dismissed="dismissCountDown = 0"
+      @dismiss-count-down="countDownChanged"
+      id="successAlert"
+      >삭제 성공</b-alert
     >
     <!-- <b-alert
       v-model="showDismissibleAlert"
@@ -83,7 +95,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(memberStore, ["isLogin", "isLogout", "isRegister"]),
+    ...mapState(memberStore, [
+      "isLogin",
+      "isLogout",
+      "isRegister",
+      "isDeleted",
+      "userInfo",
+    ]),
   },
   methods: {
     successCountDownChanged(successCountDown) {

@@ -146,7 +146,7 @@ export default {
         this.emailInfo.emailDomain
       );
       await this.userRegister(this.user);
-      console.log(this.isRegisterError);
+      console.log(this.isRegister);
       if (this.isRegister) {
         this.$router.push({ name: "SignIn" });
       }

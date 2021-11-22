@@ -5,7 +5,7 @@
     </h2>
     <b-row>
       <b-col>
-        <p>어쩌구</p>
+        <div style="height: 70px"></div>
       </b-col>
     </b-row>
     <b-row>
@@ -49,8 +49,12 @@
             </b-card-text>
 
             <router-link :to="{}" class="link"
-              ><b-icon icon="house-fill" font-scale="1" tag="button"></b-icon>
-              아파트 정보 보러가기</router-link
+              ><b-icon
+                icon="file-earmark-medical-fill"
+                font-scale="1"
+                tag="button"
+              ></b-icon>
+              코로나 진료소 보러가기</router-link
             >
           </b-card>
         </b-card-group>
