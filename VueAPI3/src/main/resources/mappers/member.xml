@@ -17,24 +17,24 @@
 	</select>
 	
 	<insert id="registerMember" parameterType="MemberDto">
-		insert into userinfo (userid, username, userpwd, email, phone, regdate)
-		values (#{userId}, #{userName}, #{userPwd}, #{email}, #{phone}, now())
+		insert into ssafy_member (userid, username, userpwd, email, joindate)
+		values (#{userid}, #{username}, #{userpwd}, #{email}, now())
 	</insert>
 	
 	<select id="listMember" resultType="MemberDto">
-		select userid, username, userpwd, email, phone, date_format(regdate, '%y.%m.%d') regdate
-		from userinfo
-		order by regdate desc;
+		select userid, username, userpwd, email, phone, date_format(joindate, '%y.%m.%d') joindate
+		from ssafy_member
+		order by joindate desc;
 	</select>
 	
 	<select id="getMember" parameterType="String" resultType="MemberDto">
-		select userid, username, userpwd, email, phone, date_format(regdate, '%y.%m.%d') regdate
-		from userinfo
+		select userid, username, userpwd, email, phone, date_format(joindate, '%y.%m.%d') joindate
+		from ssafy_member
 		where userid = #{userId}
 	</select>
 	
 	<update id="updateMember" parameterType="MemberDto">
-		update userinfo
+		update ssafy_member
 		<trim prefix="set" suffixOverrides=",">
 			<if test="userPwd != null">userpwd = #{userPwd},</if>
 			<if test="email != null">email = #{email},</if>
@@ -42,14 +42,14 @@
 		where userid = #{userId}
 	</update>
 	
-	<delete id="deleteMember" parameterType="int">
-		delete from userinfo
+	<delete id="deleteMember" parameterType="String">
+		delete from ssafy_member
 		where userid = #{userId}
 	</delete>
 	
 	<select id = "findPassword" parameterType="map" resultType="MemberDto">
 		select userid, userpwd
-		from userinfo
+		from ssafy_member
 		where userid = #{userId} and email = #{email}
 	</select>
 </mapper>
