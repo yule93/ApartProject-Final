@@ -3,8 +3,6 @@
     <navi-bar />
     <alert-view />
     <router-view />
-    <div style="height: 100px; width: 100%"></div>
-    <div style="height: 100px; width: 100%"></div>
     <footer-bar />
   </div>
 </template>
@@ -37,13 +35,5 @@ a.router-link-exact-active {
 alert-view {
   float: left;
   position: fixed;
-}
-
-div#app {
-  background-image: url(https://source.unsplash.com/BVoTTLwXvMQ/);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  max-width: 100%;
-  max-height: 100%;
 }
 </style>

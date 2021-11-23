@@ -5,21 +5,15 @@
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
-    style="
-      background-color: rgba(255, 255, 255, 0.5);
-      filter: invert(100%);
-      padding: 0px 0;
-    "
   >
     <b-col cols="2" class="text-center align-self-center">
       <b-img
-        fluid
-        src="https://source.unsplash.com/MP0bgaS_d1c/600x600"
+        thumbnail
+        src="https://picsum.photos/250/250/?image=58"
         alt="Image 1"
-        style="filter: invert(100%)"
       ></b-img>
     </b-col>
-    <b-col cols="10" class="align-self-center" style="">
+    <b-col cols="10" class="align-self-center">
       [{{ house.일련번호 }}] {{ house.아파트 }}
     </b-col>
   </b-row>
@@ -49,7 +43,6 @@ export default {
     },
     colorChange(flag) {
       this.isColor = flag;
-      // this.
     },
   },
 };

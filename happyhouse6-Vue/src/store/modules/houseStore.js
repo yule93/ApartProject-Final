@@ -7,8 +7,6 @@ const houseStore = {
     guguns: [{ value: null, text: "선택하세요" }],
     houses: [],
     house: null,
-    selectedSido: null,
-    selectedGugun: null,
   },
 
   getters: {},
@@ -36,12 +34,6 @@ const houseStore = {
     },
     SET_DETAIL_HOUSE: (state, house) => {
       state.house = house;
-    },
-    SET_DETAIL_SIDO: (state, sidoName) => {
-      state.selectedSido = sidoName;
-    },
-    SET_DETAIL_GUGUN: (state, gugunName) => {
-      state.selectedGugun = gugunName;
     },
   },
 

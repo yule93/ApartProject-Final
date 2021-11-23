@@ -11,23 +11,12 @@ async function findById(userid, success, fail) {
   await api.get(`/user/info/${userid}`).then(success).catch(fail);
 }
 
-async function registerMember(user, success, fail) {
+async function modifyMember(user, success, fail) {
   await api
-    .post(`/user/register`, JSON.stringify(user))
-    .then(success)
-    .catch(fail);
-}
-
-async function deleteMember(userid, success, fail) {
-  await api.delete(`/user/${userid}`).then(success).catch(fail);
-}
-
-async function idCheck(userid, success, fail) {
-  await api
-    .get(`/user/idcheck`, JSON.stringify(userid))
+    .put(`/user/register`, JSON.stringify(user))
     .then(success)
     .catch(fail);
 }
 // function logout(success, fail)
 
-export { login, findById, registerMember, deleteMember, idCheck };
+export { login, findById, modifyMember };

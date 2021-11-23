@@ -8,10 +8,9 @@ import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberMyPage from "@/components/user/MemberMyPage.vue";
-import MemberEditPage from "@/components/user/MemberEditPage.vue";
 
 import Board from "@/views/Board.vue";
-import BoardList from "@/components/board/BoardList2.vue";
+import BoardList from "@/components/board/BoardList.vue";
 import BoardWrite from "@/components/board/BoardWrite.vue";
 import BoardView from "@/components/board/BoardView.vue";
 import BoardUpdate from "@/components/board/BoardUpdate.vue";
@@ -77,12 +76,6 @@ const routes = [
         name: "MyPage",
         beforeEnter: onlyAuthUser,
         component: MemberMyPage,
-      },
-      {
-        path: "useredit",
-        name: "UserEdit",
-        beforeEnter: onlyAuthUser,
-        component: MemberEditPage,
       },
     ],
   },

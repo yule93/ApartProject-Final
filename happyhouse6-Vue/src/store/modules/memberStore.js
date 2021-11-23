@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, registerMember, deleteMember } from "@/api/member.js";
+import { login, modifyMember } from "@/api/member.js";
 import { findById } from "../../api/member";
 
 const memberStore = {
@@ -11,7 +11,6 @@ const memberStore = {
     isLogout: false,
     isRegister: false,
     isRegisterError: false,
-    isDeleted: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -21,8 +20,6 @@ const memberStore = {
   mutations: {
     SET_IS_LOGIN: (state, isLogin) => {
       state.isLogin = isLogin;
-      state.isRegister = false;
-      state.isDeleted = false;
     },
     SET_IS_LOGIN_ERROR: (state, isLoginError) => {
       state.isLoginError = isLoginError;
@@ -41,9 +38,6 @@ const memberStore = {
     SET_REGISTER_ERROR: (state, isRegisterError) => {
       state.isRegisterError = isRegisterError;
     },
-    DELETE_USER: (state, isDeleted) => {
-      state.isDeleted = isDeleted;
-    },
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -51,7 +45,6 @@ const memberStore = {
         user,
         (response) => {
           if (response.data.message === "success") {
-            console.log("success");
             let token = response.data["access-token"];
             commit("SET_IS_LOGIN", true);
             commit("SET_IS_LOGIN_ERROR", false);
@@ -64,32 +57,16 @@ const memberStore = {
         () => {}
       );
     },
-    userRegister({ commit }, user) {
-      registerMember(
+    async userRegister({ commit }, user) {
+      await modifyMember(
         user,
         (response) => {
-          if (response.data === "success") {
+          if (response.data.message === "success") {
             commit("SET_REGISTER", true);
             commit("SET_REGISTER_ERROR", false);
           } else {
             commit("SET_REGISTER", false);
             commit("SET_REGISTER_ERROR", true);
-          }
-        },
-        () => {}
-      );
-    },
-    async userDelete({ commit }, userid) {
-      await deleteMember(
-        userid,
-        (response) => {
-          console.log(response);
-          if (response.data === "success") {
-            console.log("delete success");
-            commit("DELETE_USER", true);
-          } else {
-            console.log(response.data);
-            commit("DELETE_USER", false);
           }
         },
         () => {}
