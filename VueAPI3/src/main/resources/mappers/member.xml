@@ -4,6 +4,12 @@
 
 <mapper namespace="com.ssafy.vue.model.mapper.MemberMapper">
 
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(userid)
+		from ssafy_member
+		where userid = #{checkId}
+	</select>
+
    <select id="login" parameterType="memberDto" resultType="memberDto">
       select username, userid, email
       from ssafy_member

@@ -122,15 +122,16 @@ public class MemberController {
 	}
 	
 	@ApiOperation(value = "아이디 중복 확인")
-	@GetMapping("/idcheck")
+	@PostMapping("/idcheck")
 	public @ResponseBody ResponseEntity<String> idCheck(
 			@RequestBody @ApiParam(value = "중복 체크 할 아이디.", required = true) String checkId) throws Exception {
-		int idCount = memberService.idCheck(checkId);
+		int idCount = memberService.idCheck(checkId.replaceAll("\"", ""));
+		//System.out.println(checkId);
 		if(idCount == 0) {
 			// 중복되는 아이디가 없을 때,
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		// 중복되는 아이디가 있을 때,
-		return new ResponseEntity<String>(DUPLICATED, HttpStatus.EXPECTATION_FAILED);
+		return new ResponseEntity<String>(DUPLICATED, HttpStatus.OK);
 	}
 }
