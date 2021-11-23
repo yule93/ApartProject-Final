@@ -15,6 +15,7 @@
           size="sm"
           @click="moveModifyArticle"
           class="mr-2"
+          v-if="article.userid == userInfo.userid"
           >글수정</b-button
         >
         <b-button variant="outline-danger" size="sm" @click="removeArticle"
@@ -43,6 +44,9 @@
 <script>
 // import moment from "moment";
 import { getArticle, deleteArticle } from "@/api/board";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   data() {
@@ -56,6 +60,7 @@ export default {
         return this.article.content.split("\n").join("<br>");
       return "";
     },
+    ...mapState(memberStore, ["userInfo"]),
     // changeDateFormat() {
     //   return moment(new Date(this.article.regtime)).format(
     //     "YYYY.MM.DD hh:mm:ss"

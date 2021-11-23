@@ -48,7 +48,7 @@
               의심이 된다면 진료소에 방문해보는 것은 어떨까요?
             </b-card-text>
 
-            <router-link :to="{}" class="link"
+            <router-link :to="{ name: 'VutifyTest' }" class="link"
               ><b-icon
                 icon="file-earmark-medical-fill"
                 font-scale="1"

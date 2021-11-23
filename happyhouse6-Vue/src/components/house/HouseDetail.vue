@@ -15,34 +15,6 @@
         </div>
       </b-col>
     </b-row>
-    <b-row class="mb-2 mt-1 back-white">
-      <b-col>
-        <div>일련번호 : {{ house.일련번호 }}</div>
-      </b-col>
-    </b-row>
-    <b-row class="mb-2 mt-1 back-white">
-      <b-col>
-        <div>아파트 이름 : {{ house.아파트 }}</div>
-      </b-col>
-    </b-row>
-    <b-row class="mb-2 mt-1 back-white">
-      <b-col>
-        <div>법정동 : {{ house.법정동 }}</div>
-      </b-col>
-    </b-row>
-    <b-row class="mb-2 mt-1 back-white">
-      <b-col>
-        <div>층수 : {{ house.층 }}층</div>
-      </b-col>
-    </b-row>
-    <b-row class="mb-2 mt-1 back-white">
-      <b-col>
-        <div>
-          거래금액 :
-          {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원
-        </div>
-      </b-col>
-    </b-row>
   </b-container>
 </template>
 
