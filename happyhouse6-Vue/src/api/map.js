@@ -10,7 +10,7 @@ var mapOption = {
   level: 3, // 지도의 확대 레벨
 };
 
-// 지도를 생성합니다
+// 지도를 생성합니다W
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 장소 검색 객체를 생성합니다
@@ -251,14 +251,4 @@ function removeAllChildNods(el) {
   }
 }
 
-export {
-  placesSearchCB,
-  displayMarker,
-  displayChickenMarkers,
-  displayMarkers,
-  addMarker,
-  removeMarker,
-  getListItem,
-  displayInfowindow,
-  removeAllChildNods,
-};
+export { displayMarkers };

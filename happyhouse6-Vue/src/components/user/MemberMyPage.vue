@@ -48,7 +48,9 @@
           <hr class="my-4" />
 
           <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" href="#">회원탈퇴</b-button>
+          <b-button variant="danger" href="#" class="m-1" @click="secession"
+            >회원탈퇴</b-button
+          >
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 
 const memberStore = "memberStore";
 
@@ -65,7 +67,29 @@ export default {
   name: "MemberMyPage",
   components: {},
   computed: {
-    ...mapState(memberStore, ["userInfo"]),
+    ...mapState(memberStore, ["isLogin", "userInfo", "isLogout", "isDeleted"]),
+  },
+  methods: {
+    ...mapMutations(memberStore, [
+      "SET_IS_LOGIN",
+      "SET_USER_INFO",
+      "SET_LOGOUT",
+    ]),
+    ...mapActions(memberStore, ["userDelete"]),
+    async secession() {
+      // console.log(this.userInfo.userid);
+      await this.userDelete(this.userInfo.userid);
+      if (this.isDeleted) {
+        this.SET_IS_LOGIN(false);
+        this.SET_LOGOUT(true);
+        this.SET_USER_INFO(null);
+        sessionStorage.removeItem("access-token");
+        if (this.$route.path != "/") this.$router.push({ name: "Home" });
+      }
+    },
+    moveEdit() {
+      this.$router.push("editInfo");
+    },
   },
 };
 </script>
