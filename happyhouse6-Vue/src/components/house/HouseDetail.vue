@@ -49,6 +49,7 @@
 <!--<script type="text/javascript" src="../../api/map.js"></script>-->
 <script>
 import { mapState } from "vuex";
+// import { displayMarkers } from "@/api/map.js";
 
 const houseStore = "houseStore";
 
@@ -58,7 +59,13 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(houseStore, ["house", "sidos", "guguns", "selectedSido"]),
+    ...mapState(houseStore, [
+      "house",
+      "sidos",
+      "guguns",
+      "selectedSido",
+      "houses",
+    ]),
     // house() {
     //   return this.$store.state.house;
     // },
@@ -151,6 +158,7 @@ export default {
         }
       });
     },
+    // houses: function (houses) {},
   },
   methods: {
     initMap() {

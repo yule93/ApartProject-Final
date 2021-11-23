@@ -21,6 +21,8 @@ const memberStore = {
   mutations: {
     SET_IS_LOGIN: (state, isLogin) => {
       state.isLogin = isLogin;
+      state.isRegister = false;
+      state.isDeleted = false;
     },
     SET_IS_LOGIN_ERROR: (state, isLoginError) => {
       state.isLoginError = isLoginError;
