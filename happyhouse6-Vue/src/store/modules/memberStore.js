@@ -1,6 +1,11 @@
 import jwt_decode from "jwt-decode";
-import { login, registerMember, deleteMember } from "@/api/member.js";
-import { findById } from "../../api/member";
+import {
+  login,
+  registerMember,
+  deleteMember,
+  findById,
+  idCheck,
+} from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -12,6 +17,7 @@ const memberStore = {
     isRegister: false,
     isRegisterError: false,
     isDeleted: false,
+    isDuplicated: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -44,6 +50,9 @@ const memberStore = {
     DELETE_USER: (state, isDeleted) => {
       state.isDeleted = isDeleted;
     },
+    CHECK_DUPLICATE_ID: (state, isDuplicated) => {
+      state.isDuplicated = isDuplicated;
+    },
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -74,6 +83,20 @@ const memberStore = {
           } else {
             commit("SET_REGISTER", false);
             commit("SET_REGISTER_ERROR", true);
+          }
+        },
+        () => {}
+      );
+    },
+    async idCheck({ commit }, typing) {
+      await idCheck(
+        typing,
+        (response) => {
+          //console.log(response);
+          if (response.data === "duplicated") {
+            commit("CHECK_DUPLICATE_ID", true);
+          } else {
+            commit("CHECK_DUPLICATE_ID", false);
           }
         },
         () => {}

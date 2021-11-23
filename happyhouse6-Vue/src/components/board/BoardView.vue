@@ -15,10 +15,14 @@
           size="sm"
           @click="moveModifyArticle"
           class="mr-2"
-          v-if="article.userid == userInfo.userid"
+          v-if="article.userid == userInfo.userid || userInfo.userid == 'admin'"
           >글수정</b-button
         >
-        <b-button variant="outline-danger" size="sm" @click="removeArticle"
+        <b-button
+          variant="outline-danger"
+          size="sm"
+          @click="removeArticle"
+          v-if="article.userid == userInfo.userid || userInfo.userid == 'admin'"
           >글삭제</b-button
         >
       </b-col>
@@ -90,8 +94,9 @@ export default {
       //   this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
     removeArticle() {
-      if (confirm("정말로 삭제?")) {
+      if (confirm("정말로 삭제할까요?")) {
         deleteArticle(this.article.articleno, () => {
+          alert("삭제가 완료되었습니다.");
           this.$router.push({ name: "BoardList" });
         });
       }

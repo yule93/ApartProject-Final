@@ -2,12 +2,13 @@
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="#">
-        <router-link to="/">
+        <router-link :to="{ name: 'Home' }">
           <img
-            src="@/assets/ssafy_logo.png"
+            src="@/assets/noun_House_1.png"
             class="d-inline-block align-middle"
-            width="90px"
+            width="50px"
             alt="Kitten"
+            style="filter: invert(100%)"
           />
         </router-link>
       </b-navbar-brand>
@@ -46,6 +47,7 @@
             ><b-avatar
               variant="primary"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
+              style="width: 30px; height: 30px; margin-right: 10px"
             ></b-avatar
             >{{ userInfo.username }}({{ userInfo.userid }})님
             환영합니다.</b-nav-item

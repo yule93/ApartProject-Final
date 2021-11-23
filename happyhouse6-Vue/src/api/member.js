@@ -22,9 +22,9 @@ async function deleteMember(userid, success, fail) {
   await api.delete(`/user/${userid}`).then(success).catch(fail);
 }
 
-async function idCheck(userid, success, fail) {
+async function idCheck(typing, success, fail) {
   await api
-    .get(`/user/idcheck`, JSON.stringify(userid))
+    .post(`/user/idcheck`, JSON.stringify(typing))
     .then(success)
     .catch(fail);
 }

@@ -11,15 +11,8 @@
       padding: 0px 0;
     "
   >
-    <b-col cols="2" class="text-center align-self-center">
-      <b-img
-        fluid
-        src="https://source.unsplash.com/MP0bgaS_d1c/600x600"
-        alt="Image 1"
-        style="filter: invert(100%)"
-      ></b-img>
-    </b-col>
-    <b-col cols="10" class="align-self-center" style="">
+    <b-col cols="2" class="text-center align-self-center"> </b-col>
+    <b-col cols="10" class="align-self-center" style="height: 35px">
       [{{ house.일련번호 }}] {{ house.아파트 }}
     </b-col>
   </b-row>

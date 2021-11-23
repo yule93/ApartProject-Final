@@ -47,8 +47,19 @@
           </b-container>
           <hr class="my-4" />
 
-          <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" href="#" class="m-1" @click="secession"
+          <b-button
+            variant="primary"
+            href="#"
+            class="mr-1"
+            v-if="userInfo.userid != 'admin'"
+            >정보수정</b-button
+          >
+          <b-button
+            variant="danger"
+            href="#"
+            class="m-1"
+            @click="secession"
+            v-if="userInfo.userid != 'admin'"
             >회원탈퇴</b-button
           >
         </b-jumbotron>
