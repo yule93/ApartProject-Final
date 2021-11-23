@@ -32,7 +32,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public boolean registerMember(MemberDto memberDto) throws Exception {
-//		validation check
+		if(memberDto.getUserid() == null || memberDto.getUsername() == null
+				|| memberDto.getEmail() == null || memberDto.getUserpwd() == null) {
+			throw new Exception();
+		}
 		return sqlSession.getMapper(MemberMapper.class).registerMember(memberDto) == 1;
 	}
 	
@@ -47,13 +50,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean deleteMember(String userId) throws Exception {
-		return sqlSession.getMapper(MemberMapper.class).deleteMember(userId) == 1;
+	public boolean deleteMember(String userid) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).deleteMember(userid) == 1;
 	}
 
 	@Override
-	public MemberDto findpwd(Map<String, String> map) {
+	public MemberDto findpwd(Map<String, String> map) throws Exception {
 		return sqlSession.getMapper(MemberMapper.class).findPassword(map);
+	}
+
+	@Override
+	public int idCheck(String checkId) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).idCheck(checkId); // 0 or 1
 	}
 
 }

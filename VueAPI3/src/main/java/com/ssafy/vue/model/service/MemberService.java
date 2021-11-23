@@ -13,8 +13,9 @@ public interface MemberService {
 	
 	List<MemberDto> listMember() throws Exception;
 	void updateMember(MemberDto memberDto) throws Exception;
-	boolean deleteMember(String userId) throws Exception;
+	boolean deleteMember(String userid) throws Exception;
 
-	MemberDto findpwd(Map<String, String> map);
+	MemberDto findpwd(Map<String, String> map) throws Exception;
+	public int idCheck(String checkId) throws Exception;
 	
 }

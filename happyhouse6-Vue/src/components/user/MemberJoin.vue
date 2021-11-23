@@ -20,7 +20,11 @@
                 placeholder="이름 입력...."
               ></b-form-input>
             </b-form-group>
-            <b-form-group label="아이디:" label-for="userid">
+            <b-form-group
+              label="아이디:"
+              label-for="userid"
+              @blur="checkDuplicate"
+            >
               <b-form-input
                 id="userid"
                 v-model="user.userid"
@@ -52,7 +56,7 @@
             >
               <b-form-input
                 v-model="emailInfo.emailId"
-                id="email"
+                id="emailId"
                 required
                 placeholder="이메일 입력..."
               ></b-form-input>
@@ -116,7 +120,7 @@ export default {
         username: null,
         userid: null,
         userpwd: null,
-        email: "sfafad@naver.com",
+        email: null,
       },
       emailInfo: {
         emailId: null,
@@ -136,11 +140,18 @@ export default {
       this.$router.push({ name: "SignIn" });
     },
     async register() {
+      this.user.email = "".concat(
+        this.emailInfo.emailId,
+        "@",
+        this.emailInfo.emailDomain
+      );
       await this.userRegister(this.user);
+      console.log(this.isRegister);
       if (this.isRegister) {
         this.$router.push({ name: "SignIn" });
       }
     },
+    async checkDuplicate() {},
   },
 };
 </script>

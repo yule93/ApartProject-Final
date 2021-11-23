@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.vue.model.MemberDto;
@@ -35,6 +37,7 @@ public class MemberController {
 	public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
+	private static final String DUPLICATED = "duplicated";
 	
 	@Autowired
 	private JwtServiceImpl jwtService;
@@ -97,8 +100,8 @@ public class MemberController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
-	@ApiOperation(value = "회원가입", notes = "회원 가입 기능이다.", response = void.class)
-	@PutMapping("/register")
+	@ApiOperation(value = "회원가입", notes = "회원 가입 기능이다.", response = Map.class)
+	@PostMapping("/register")
 	public ResponseEntity<String> registerMember(
 			@RequestBody @ApiParam(value = "회원가입 시 필요한 회원정보(MemberDto 내부 변수들).", required = true) MemberDto memberDto) throws Exception {
 		if(memberService.registerMember(memberDto)) {
@@ -109,12 +112,25 @@ public class MemberController {
 	
 	@ApiOperation(value = "회원 탈퇴", notes="유저 아이디에 해당하는 회원을 탈퇴한다.", response = String.class)
 	@DeleteMapping("/{userid}")
-	public ResponseEntity<String> deleteMember(@PathVariable("userid")
-	@ApiParam(value = "살제할 글의 글번호.", required = true) String userId) throws Exception {
+	public ResponseEntity<String> deleteMember(
+			@PathVariable("userid") @ApiParam(value = "삭제할 유저의 아이디.", required = true) String userid) throws Exception {
 		logger.info("deleteMember - 호출");
-		if(memberService.deleteMember(userId)) {
+		if(memberService.deleteMember(userid)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@ApiOperation(value = "아이디 중복 확인")
+	@GetMapping("/idcheck")
+	public @ResponseBody ResponseEntity<String> idCheck(
+			@RequestBody @ApiParam(value = "중복 체크 할 아이디.", required = true) String checkId) throws Exception {
+		int idCount = memberService.idCheck(checkId);
+		if(idCount == 0) {
+			// 중복되는 아이디가 없을 때,
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		// 중복되는 아이디가 있을 때,
+		return new ResponseEntity<String>(DUPLICATED, HttpStatus.EXPECTATION_FAILED);
 	}
 }
