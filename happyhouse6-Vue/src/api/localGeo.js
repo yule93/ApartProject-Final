@@ -5,7 +5,7 @@ function saveCoords(coordsObj) {
 }
 
 function handleGeoError() {
-  console.log('Cant access geo location');
+  console.log("Cant access geo location");
 }
 
 function handleGeoSuccess(position) {
@@ -13,7 +13,7 @@ function handleGeoSuccess(position) {
   const longitude = position.coords.longitude;
   const coordsObj = {
     latitude,
-    longitude
+    longitude,
   };
 
   saveCoords(coordsObj);
@@ -26,7 +26,7 @@ function askForCoords() {
 function loadCoords() {
   const loadedCoords = localStorage.getItem(COORDS);
 
-  if(loadedCoords === null) {
+  if (loadedCoords === null) {
     askForCoords();
   } else {
     const parsedCoords = JSON.parse(loadedCoords);
@@ -38,3 +38,5 @@ function init() {
 }
 
 init();
+
+export { init };

@@ -6,9 +6,10 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
-        <b-card class="text-center mt-3" style="" align="left">
-          <b-form class="text-left" @submit.stop.prevent="register">
+      <b-col></b-col>
+      <b-col cols="8">
+        <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
+          <b-form class="text-left">
             <b-alert show variant="danger" v-if="isRegisterError"
               >비어 있는 값이 있는지 확인하세요.</b-alert
             >
@@ -28,6 +29,7 @@
                 required
                 placeholder="아이디 입력...."
                 @keyup="checkDuplicateId"
+                :state="idCheckFlag"
               ></b-form-input>
               <div :class="idCheckMsgColor">{{ idCheckMsg }}</div>
             </b-form-group>
@@ -38,6 +40,7 @@
                 v-model="user.userpwd"
                 required
                 placeholder="비밀번호 입력...."
+                @blur="checkPassword"
               ></b-form-input>
             </b-form-group>
             <b-form-group label="비밀번호 확인:" label-for="pwdcheck">
@@ -48,8 +51,9 @@
                 placeholder="비밀번호 재입력"
                 v-model="confirmpassword"
                 @blur="checkPassword"
+                :state="passwordCheckFlag"
               ></b-form-input>
-              <div>{{ passwordCheckFlag }}</div>
+              <div>{{ passwordCheckMsg }}</div>
             </b-form-group>
             <b-form-group
               label="이메일:"
@@ -99,6 +103,7 @@
           </b-form>
         </b-card>
       </b-col>
+      <b-col></b-col>
     </b-row>
   </b-container>
 </template>
@@ -131,8 +136,9 @@ export default {
       ],
       idCheckMsg: null,
       idCheckFlag: false,
-      passwordCheckFlag: "비밀번호 확인이 비밀번호와 맞지 않습니다.",
+      passwordCheckMsg: "비밀번호 확인이 비밀번호와 맞지 않습니다.",
       confirmpassword: null,
+      passwordCheckFlag: false,
     };
   },
   computed: {
@@ -154,17 +160,18 @@ export default {
     },
     checkPassword() {
       if (this.confirmpassword == this.user.userpwd) {
-        this.passwordCheckFlag = "비밀번호 확인이 맞습니다.";
+        this.passwordCheckMsg = "비밀번호 확인이 맞습니다.";
+        this.passwordCheckFlag = true;
       }
     },
-    async register() {
+    register() {
       var ckid = this.user.userid;
-      if (ckid.length < 6 || ckid.length > 16) {
+      if (ckid.length < 6 || ckid.length > 16 || ckid == null) {
         this.idCheckMsg = "아이디는 6글자 이상, 16자 이하여야 합니다.";
       } else if (
         this.idCheckFlag &&
         !this.isDuplicated &&
-        this.passwordCheckFlag == "비밀번호 확인이 맞습니다."
+        this.passwordCheckFlag
       ) {
         if (confirm("해당 정보로 등록하시겠습니까?")) {
           this.user.email = "".concat(
@@ -172,8 +179,7 @@ export default {
             "@",
             this.emailInfo.emailDomain
           );
-          await this.userRegister(this.user);
-          //console.log(this.isRegister);
+          this.userRegister(this.user);
           if (this.isRegister) {
             this.$router.push({ name: "SignIn" });
           }

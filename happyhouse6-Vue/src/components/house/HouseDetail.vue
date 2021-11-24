@@ -135,14 +135,19 @@ export default {
   methods: {
     initMap() {
       const container = document.querySelector("#map");
+      const nowPos = JSON.parse(localStorage.getItem("coords"));
+      console.log(nowPos);
       const options = {
-        center: new kakao.maps.LatLng(35.19656853772262, 129.0807270648317),
+        center: new kakao.maps.LatLng(
+          parseFloat(nowPos["latitude"]),
+          parseFloat(nowPos["longitude"])
+        ),
         level: 3,
       };
       const map = new kakao.maps.Map(container, options);
       const markerPosition = new kakao.maps.LatLng(
-        35.19656853772262,
-        129.0807270648317
+        parseFloat(nowPos["latitude"]),
+        parseFloat(nowPos["longitude"])
       );
 
       const marker = new kakao.maps.Marker({

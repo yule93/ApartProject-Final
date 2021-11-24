@@ -22,6 +22,10 @@ async function deleteMember(userid, success, fail) {
   await api.delete(`/user/${userid}`).then(success).catch(fail);
 }
 
+async function modifyMember(user, success, fail) {
+  await api.put(`/user/modify`, JSON.stringify(user)).then(success).catch(fail);
+}
+
 async function idCheck(typing, success, fail) {
   await api
     .post(`/user/idcheck`, JSON.stringify(typing))
@@ -30,4 +34,4 @@ async function idCheck(typing, success, fail) {
 }
 // function logout(success, fail)
 
-export { login, findById, registerMember, deleteMember, idCheck };
+export { login, findById, registerMember, deleteMember, idCheck, modifyMember };

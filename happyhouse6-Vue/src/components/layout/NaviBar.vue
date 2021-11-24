@@ -40,6 +40,12 @@
               아파트정보</router-link
             ></b-nav-item
           >
+          <b-nav-item href="#"
+            ><router-link :to="{ name: 'Covid' }" class="link"
+              ><b-icon icon="file-earmark-medical-fill" font-scale="1"></b-icon>
+              코로나 진료소</router-link
+            ></b-nav-item
+          >
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto" v-if="userInfo">

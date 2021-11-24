@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h2 style="margin-bottom: 30px; filter: invert(100%)">
+    <h2 style="margin-top: 50px; filter: invert(100%)">
       <b-icon icon="house"></b-icon> Happy House
     </h2>
     <b-row>
@@ -10,8 +10,8 @@
     </b-row>
     <b-row>
       <b-col></b-col>
-      <b-col cols="8">
-        <b-card-group deck>
+      <b-col cols="16">
+        <b-card-group deck style="margin-bottom: 30px">
           <b-card
             title="아파트 관심 지역 둘러보기"
             :img-src="require('../assets/apart_map_1.jpg')"
@@ -49,13 +49,36 @@
               의심이 된다면 진료소에 방문해보는 것은 어떨까요?
             </b-card-text>
 
-            <router-link :to="{ name: 'VutifyTest' }" class="link"
+            <router-link :to="{ name: 'Covid' }" class="link"
               ><b-icon
                 icon="file-earmark-medical-fill"
                 font-scale="1"
                 tag="button"
               ></b-icon>
               코로나 진료소 보러가기</router-link
+            >
+          </b-card>
+          <b-card
+            title="오픈 준비중!"
+            img-top
+            tag="article"
+            style="max-width: 20rem"
+            class="mb-2"
+            border-variant="secondary"
+            :img-src="require('../assets/covid_card.jpg')"
+            img-height="300px"
+          >
+            <b-card-text>
+              다른 기능이 구현되면 추가 될 카드입니다.
+            </b-card-text>
+
+            <router-link :to="{}" class="link"
+              ><b-icon
+                icon="file-earmark-medical-fill"
+                font-scale="1"
+                tag="button"
+              ></b-icon>
+              to link</router-link
             >
           </b-card>
         </b-card-group>

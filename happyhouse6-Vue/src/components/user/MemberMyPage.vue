@@ -49,7 +49,7 @@
 
           <b-button
             variant="primary"
-            href="#"
+            @click="moveEdit"
             class="mr-1"
             v-if="userInfo.userid != 'admin'"
             >정보수정</b-button
@@ -99,7 +99,7 @@ export default {
       }
     },
     moveEdit() {
-      this.$router.push("editInfo");
+      this.$router.push("UserEdit");
     },
   },
 };

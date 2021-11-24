@@ -20,6 +20,7 @@
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
+import { init } from "@/api/localGeo.js";
 
 export default {
   name: "House",
@@ -27,6 +28,14 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
+  },
+  created() {
+    if (
+      localStorage.getItem("coords") == null ||
+      localStorage.getItem("coords") == "undefined"
+    ) {
+      this.init();
+    }
   },
 };
 </script>

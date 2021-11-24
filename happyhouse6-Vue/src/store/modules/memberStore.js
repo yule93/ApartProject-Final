@@ -5,6 +5,7 @@ import {
   deleteMember,
   findById,
   idCheck,
+  modifyMember,
 } from "@/api/member.js";
 
 const memberStore = {
@@ -18,6 +19,7 @@ const memberStore = {
     isRegisterError: false,
     isDeleted: false,
     isDuplicated: false,
+    isModified: false,
   },
   getters: {
     checkUserInfo: function (state) {
@@ -52,6 +54,9 @@ const memberStore = {
     },
     CHECK_DUPLICATE_ID: (state, isDuplicated) => {
       state.isDuplicated = isDuplicated;
+    },
+    MODIFY_USER: (state, isModified) => {
+      state.isModified = isModified;
     },
   },
   actions: {
@@ -117,6 +122,16 @@ const memberStore = {
         },
         () => {}
       );
+    },
+    async userModify({ commit }, user) {
+      await modifyMember(user, (response) => {
+        console.log(response);
+        if (response.data == "success") {
+          commit("MODIFY_USER", true);
+        } else {
+          commit("MODIFY_USER", false);
+        }
+      });
     },
     getUserInfo({ commit }, token) {
       let decode_token = jwt_decode(token);

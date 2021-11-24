@@ -3,7 +3,6 @@
     <navi-bar />
     <alert-view />
     <router-view />
-    <div style="height: 100px; width: 100%"></div>
     <footer-bar />
   </div>
 </template>
