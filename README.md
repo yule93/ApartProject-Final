@@ -27,3 +27,14 @@
 - 2021/11/17: 모든 메세지 수용 가능한 alert 창 완성.
 - 2021/11/18: 회원 관리 기능 추가(로그인, 탈퇴, 수정 등)
 - 2021/11/23: 회원가입 밸리데이션 기능 구현
+
+## 레퍼런스
+
+- Search Bar: https://stackoverflow.com/questions/44656269/how-to-change-bootstrap-input-text-box-style-to-line/44656484
+
+- kakao Map API: https://apis.map.kakao.com/web/sample/categoryFromBounds/
+  https://velog.io/@geommyeong/Vue.js-KakaoMap-API
+
+- Image Source: https://source.unsplash.com/
+
+- Bootstrap card: https://m.blog.naver.com/writer0713/222082104945
