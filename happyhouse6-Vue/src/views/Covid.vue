@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div style="width: 100%; text-align: center; margin-top: 10px">
+    <div class="mt-4" style="width: 100%; text-align: center">
       <h3>
         <b-icon icon="file-earmark-medical-fill"></b-icon>코로나19 선별 진료소
         및 편의시설
       </h3>
     </div>
     <center-search-bar></center-search-bar>
-    <div style="position: absolute; top: 22%">
+    <div style="position: absolute; top: 33%">
       <ul id="category">
         <li id="BK9" data-order="0">
           <span class="category_bg bank"></span>

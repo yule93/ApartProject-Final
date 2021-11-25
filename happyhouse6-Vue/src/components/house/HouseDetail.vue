@@ -48,7 +48,7 @@ export default {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
-  created() {
+  mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {

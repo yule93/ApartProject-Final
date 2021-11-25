@@ -10,9 +10,7 @@
       <b-col cols="8">
         <b-jumbotron>
           <template #header>My Page</template>
-
           <template #lead> 내 정보 확인페이지입니다. </template>
-
           <hr class="my-4" />
 
           <b-container class="mt-4">

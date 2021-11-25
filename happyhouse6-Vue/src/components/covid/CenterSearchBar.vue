@@ -5,7 +5,7 @@
         <div class="input-group-btn">
           <button
             type="button"
-            class="btn btn-outline-secondary dropdown-toggle mr-2"
+            class="btn dropdown-button dropdown-toggle mr-2"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -26,22 +26,33 @@
           placeholder="코로나 선별 진료소 검색"
         />
         <span class="input-group-btn">
-          <button class="btn" type="button">Go!</button>
+          <button class="btn search-button" type="button">검색</button>
         </span>
-        <button class="btn btn-outline-primary" type="button">현재 위치</button>
+        <b-button
+          class="btn btn-outline-primary ml-1"
+          type="button"
+          @click="SET_NOW_POS_MAP"
+          >현재 위치</b-button
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
+const covidStore = "covidStore";
+
 export default {
   name: "Centersearchbar",
   data() {
     return {};
   },
   mounted() {},
-  methods: {},
+  methods: {
+    ...mapMutations(covidStore, ["SET_NOW_POS_MAP"]),
+  },
 };
 </script>
 
@@ -59,16 +70,30 @@ input[type="text"],
 select.form-control {
   background: transparent;
   border: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #777777;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 0;
   filter: invert(100%);
+  color: black;
 }
 
 input[type="text"]:focus,
 select.form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.search-button:hover {
+  background-color: #777777;
+  color: white;
+}
+.search-button {
+  color: white;
+}
+
+.dropdown-button {
+  background-color: #5c5794;
+  color: #ffffff;
 }
 </style>

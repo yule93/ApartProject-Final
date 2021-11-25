@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg">
+      <!-- type="dark" variant="dark" -->
       <b-navbar-brand href="#">
         <router-link :to="{ name: 'Home' }">
           <img
@@ -29,12 +30,6 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
-              ><b-icon icon="instagram" font-scale="1"></b-icon>
-              인별그램</router-link
-            ></b-nav-item
-          >
-          <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
               ><b-icon icon="house-fill" font-scale="1"></b-icon>
               아파트정보</router-link
@@ -48,7 +43,7 @@
           >
         </b-navbar-nav>
 
-        <b-navbar-nav class="ml-auto" v-if="userInfo">
+        <b-navbar-nav class="ml-auto" v-if="userInfo" style="">
           <b-nav-item class="align-self-center"
             ><b-avatar
               variant="primary"

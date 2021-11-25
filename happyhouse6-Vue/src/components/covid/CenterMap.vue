@@ -10,13 +10,18 @@
 </template>
 
 <script>
-export default {
-  name: "Happyhouse6Centermap",
+import { mapState } from "vuex";
 
+const covidStore = "covidStore";
+
+export default {
+  name: "Centermap",
   data() {
     return {};
   },
-
+  computed: {
+    ...mapState(covidStore, ["gotoNowPos"]),
+  },
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
@@ -27,6 +32,11 @@ export default {
         "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=47642a55e575541b111222ca754737af&libraries=services";
       document.head.appendChild(script);
     }
+  },
+  watch: {
+    gotoNowPos: function () {
+      this.initMap();
+    },
   },
   methods: {
     initMap() {
@@ -52,6 +62,7 @@ export default {
   padding: 0;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
   font-size: 12px;
+  border-radius: 10px;
 }
 .map_wrap {
   position: relative;

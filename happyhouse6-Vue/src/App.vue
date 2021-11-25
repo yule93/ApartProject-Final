@@ -38,12 +38,12 @@ alert-view {
 }
 
 div#app {
-  /* background-image: url(https://source.unsplash.com/BVoTTLwXvMQ/); */
-  background-color: #555555;
+  /* background-image: url("./assets/ashley-whitlatch_1.jpg"); */
   background-size: 100% 100%;
   background-repeat: no-repeat;
   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
+  font-family: "Hahmlet", serif;
 }
 </style>
