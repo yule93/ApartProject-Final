@@ -22,4 +22,15 @@ function deleteArticle(articleno, success, fail) {
   api.delete(`/board/${articleno}`).then(success).catch(fail);
 }
 
-export { listArticle, writeArticle, getArticle, modifyArticle, deleteArticle };
+function writeMemo(articleno, success, fail) {
+  api
+    .post(`/board/comment`, JSON.stringify(articleno))
+    .then(success)
+    .catch(fail);
+}
+
+function getMemo(articleno, success, fail) {
+  api.get(`/board/${articleno}`).then(success).catch(fail);
+}
+
+export { listArticle, writeArticle, getArticle, modifyArticle, deleteArticle, writeMemo, getMemo };
