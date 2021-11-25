@@ -8,4 +8,10 @@
 		insert into memo (userid, comment, memotime, articleno)
 		values (#{userid}, #{comment}, now(), #{articleno})
 	</insert>
+	
+	<select id="commentList" parameterType = "int" resultType = "commentDto">
+		select memono, userid, comment, memotime, articleno
+		from memo
+		where articleno = #{articleno}
+	</select>
 </mapper>

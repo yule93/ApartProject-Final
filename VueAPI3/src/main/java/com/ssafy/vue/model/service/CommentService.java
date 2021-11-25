@@ -6,5 +6,5 @@ import com.ssafy.vue.model.CommentDto;
 
 public interface CommentService {
 	public boolean writeMemo(CommentDto commentDto) throws Exception;
-
+	public List<CommentDto> commentList(int articleno) throws Exception;
 }

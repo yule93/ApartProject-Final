@@ -54,17 +54,27 @@
         </b-form>
       </b-col>
     </b-row>
+    <b-row class="mb-1">
+      <b-col style="text-align: left">
+        <comment-list :articleno="article.articleno"></comment-list>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
 // import moment from "moment";
+import CommentList from "@/components/board/CommentList";
 import { getArticle, deleteArticle, writeMemo, getMemo } from "@/api/board";
 import { mapState } from "vuex";
 
 const memberStore = "memberStore";
 
 export default {
+  name: "BoardView",
+  components: {
+    CommentList,
+  },
   data() {
     return {
       article: {},

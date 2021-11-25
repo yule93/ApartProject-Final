@@ -17,5 +17,6 @@ public interface MemberService {
 
 	MemberDto findpwd(Map<String, String> map) throws Exception;
 	public int idCheck(String checkId) throws Exception;
+	public boolean modifyMember(MemberDto memberDto);
 	
 }

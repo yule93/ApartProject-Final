@@ -19,4 +19,5 @@ public interface MemberMapper {
 	public MemberDto findPassword(Map<String, String> map) throws Exception;
 	public int deleteMember(String userid) throws Exception;
 	public int idCheck(String checkId) throws Exception;
+	public int modifyMember(MemberDto memberDto);
 }

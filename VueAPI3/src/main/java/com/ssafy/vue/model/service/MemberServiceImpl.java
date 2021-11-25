@@ -64,4 +64,10 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).idCheck(checkId); // 0 or 1
 	}
 
+	@Override
+	public boolean modifyMember(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MemberMapper.class).modifyMember(memberDto) == 1;
+	}
+	
 }

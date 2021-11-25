@@ -30,7 +30,15 @@ function writeMemo(articleno, success, fail) {
 }
 
 function getMemo(articleno, success, fail) {
-  api.get(`/board/${articleno}`).then(success).catch(fail);
+  api.get(`/board/comment/${articleno}`).then(success).catch(fail);
 }
 
-export { listArticle, writeArticle, getArticle, modifyArticle, deleteArticle, writeMemo, getMemo };
+export {
+  listArticle,
+  writeArticle,
+  getArticle,
+  modifyArticle,
+  deleteArticle,
+  writeMemo,
+  getMemo,
+};

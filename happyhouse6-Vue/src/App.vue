@@ -26,10 +26,11 @@ export default {
 a:hover {
   text-decoration: none;
   font-weight: bold;
+  color: aquamarine;
 }
 
-a.router-link-exact-active {
-  color: #42b983;
+.router-link-exact-active {
+  color: rgba(16, 75, 90, 0.8);
 }
 
 alert-view {

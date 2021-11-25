@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h3><b-icon icon="house-fill"></b-icon> House Service</h3>
+    <h3 style=""><b-icon icon="house-fill"></b-icon> House Service</h3>
     <b-row>
       <b-col>
         <house-search-bar></house-search-bar>

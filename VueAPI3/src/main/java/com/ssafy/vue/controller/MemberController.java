@@ -134,4 +134,16 @@ public class MemberController {
 		// 중복되는 아이디가 있을 때,
 		return new ResponseEntity<String>(DUPLICATED, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "회원 정보 수정")
+	@PutMapping("/modify")
+	public @ResponseBody ResponseEntity<String> modifyMember(
+			@RequestBody @ApiParam(value = "수정할 회원 정보", required = true) MemberDto memberDto) throws Exception {
+		logger.info("modifyMember - 호출");
+		
+		if(memberService.modifyMember(memberDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
 }

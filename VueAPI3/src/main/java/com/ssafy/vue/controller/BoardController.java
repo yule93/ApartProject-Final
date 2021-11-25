@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.vue.model.BoardDto;
 import com.ssafy.vue.model.BoardParameterDto;
 import com.ssafy.vue.model.service.BoardService;
+import com.ssafy.vue.model.service.CommentService;
+import com.ssafy.vue.model.CommentDto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,6 +39,8 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private CommentService commentService;
 
 	@ApiOperation(value = "게시판 글작성", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
@@ -52,6 +56,7 @@ public class BoardController {
 	@PostMapping("/comment")
 	public ResponseEntity<String> writeMemo(@RequestBody @ApiParam(value = "댓글 정보.", required = true) CommentDto commentDto) throws Exception {
 		logger.info("writeComment - 호출");
+		System.out.println(commentService.writeMemo(commentDto));
 		if (commentService.writeMemo(commentDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -65,11 +70,19 @@ public class BoardController {
 		return new ResponseEntity<List<BoardDto>>(boardService.listArticle(boardParameterDto), HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "댓글 목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
+	@GetMapping("/comment/{articleno}")
+	public ResponseEntity<List<CommentDto>> listCommentInArticle(@PathVariable("articleno")
+	@ApiParam(value = "댓글이 작성된 게시글 번호", required = true) int articleno) throws Exception {
+		logger.info("listCommentInArticle - 호출");
+		return new ResponseEntity<List<CommentDto>>(commentService.commentList(articleno), HttpStatus.OK);
+	}
+	
 	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = BoardDto.class)
 	@GetMapping("/{articleno}")
 	public ResponseEntity<BoardDto> getArticle(@PathVariable("articleno") @ApiParam(value = "얻어올 글의 글번호.", required = true) int articleno) throws Exception {
 		logger.info("getArticle - 호출 : " + articleno);
-		boardService.updateHit(articleno);
+		boardService.updateHit(articleno);	// 조회수 올리는 메소드
 		return new ResponseEntity<BoardDto>(boardService.getArticle(articleno), HttpStatus.OK);
 	}
 	

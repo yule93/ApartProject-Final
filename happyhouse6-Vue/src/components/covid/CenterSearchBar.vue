@@ -28,10 +28,7 @@
         <span class="input-group-btn">
           <button class="btn search-button" type="button">검색</button>
         </span>
-        <b-button
-          class="btn btn-outline-primary ml-1"
-          type="button"
-          @click="SET_NOW_POS_MAP"
+        <b-button class="btn ml-1" type="button" @click="gotoCurrentLocation"
           >현재 위치</b-button
         >
       </div>
@@ -40,7 +37,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 const covidStore = "covidStore";
 
@@ -51,7 +48,7 @@ export default {
   },
   mounted() {},
   methods: {
-    ...mapMutations(covidStore, ["SET_NOW_POS_MAP"]),
+    ...mapActions(covidStore, ["gotoCurrentLocation"]),
   },
 };
 </script>
@@ -90,10 +87,11 @@ select.form-control:focus {
 }
 .search-button {
   color: white;
+  filter: invert(100%);
 }
 
 .dropdown-button {
-  background-color: #5c5794;
+  background-color: rgb(83, 180, 00197);
   color: #ffffff;
 }
 </style>

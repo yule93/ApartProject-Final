@@ -180,8 +180,8 @@ export default {
             this.emailInfo.emailDomain
           );
           this.userRegister(this.user);
-          if (this.isRegister) {
-            this.$router.push({ name: "SignIn" });
+          if (!this.isRegisterError) {
+            this.$router.push({ name: "SingIn" });
           }
         }
       }

@@ -39,13 +39,14 @@
       where userid = #{userId}
    </select>
    
-   <update id="updateMember" parameterType="MemberDto">
+   <update id="modifyMember" parameterType="MemberDto">
       update ssafy_member
       <trim prefix="set" suffixOverrides=",">
-         <if test="userPwd != null">userpwd = #{userPwd},</if>
+         <if test="userpwd != null">userpwd = #{userpwd},</if>
          <if test="email != null">email = #{email},</if>
+         <if test="username != null">username = #{username},</if>
       </trim>
-      where userid = #{userId}
+      where userid = #{userid}
    </update>
    
    <delete id="deleteMember" parameterType="String">
