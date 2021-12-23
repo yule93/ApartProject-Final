@@ -2,6 +2,14 @@
 
 최종 관통 프로젝트 (Vue + Spring-MyBatis)
 
+## 주요 사이트 화면
+![Main Page](https://user-images.githubusercontent.com/31907528/147204929-93705c75-372d-4444-9d15-f9c874b25e66.png)
+![Apart List And Search Page](https://user-images.githubusercontent.com/31907528/147205026-3119c4d8-b574-49d3-8b9b-ba051f4ff4ef.png)
+![User Info Modify Page](https://user-images.githubusercontent.com/31907528/147205207-d2dcf26d-8e90-4c9a-83d4-984a59bfeb28.png)
+![Free Board Page](https://user-images.githubusercontent.com/31907528/147205213-20badb10-6091-488f-9e9d-afbbbd5fbe6a.png)
+
+---
+
 ## VueJS (FrontEnd)
 ### 메인 기능
 - [x] 아파트 목록 불러오기: DB에 시군코드, 공공데이터 API로 아파트 정보 불러오기
