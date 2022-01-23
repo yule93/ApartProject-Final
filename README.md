@@ -2,6 +2,10 @@
 
 최종 관통 프로젝트 (Vue + Spring-MyBatis)
 
+## 시스템 플로우
+![System FlowChart](https://user-images.githubusercontent.com/31907528/150686174-d2401c5b-11c6-4bb9-8860-ad5ece620259.png)
+
+
 ## 주요 사이트 화면
 ![Main Page](https://user-images.githubusercontent.com/31907528/147204929-93705c75-372d-4444-9d15-f9c874b25e66.png)
 ![Apart List And Search Page](https://user-images.githubusercontent.com/31907528/147205026-3119c4d8-b574-49d3-8b9b-ba051f4ff4ef.png)
